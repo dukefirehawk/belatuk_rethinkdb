@@ -60,47 +60,41 @@ void main() {
   });
 
   group("pluck command -> ", () {
-    test(
-      "should use pluck and return the children of the person with the id equal to 1",
-      () async {
-        var parent = await r
-            .table(tableName!)
-            .get(1)
-            .pluck('children')
-            .run(connection);
-        expect(parent is Map, equals(true));
+    test("should use pluck and return the children of the person with the id equal to 1", () async {
+      var parent = await r
+          .table(tableName!)
+          .get(1)
+          .pluck('children')
+          .run(connection);
+      expect(parent is Map, equals(true));
 
-        expect(
-          parent['children'],
-          equals([
+      expect(
+        parent['children'],
+        equals([
+          {'id': 1, 'name': 'Robert'},
+          {'id': 2, 'name': 'Mariah'},
+        ]),
+      );
+    });
+    test("should use pluck and return the children and the name of the person with the id equal to 1", () async {
+      var parent = await r
+          .table(tableName!)
+          .get(1)
+          .pluck('children', 'name')
+          .run(connection);
+      expect(parent is Map, equals(true));
+
+      expect(
+        parent,
+        equals({
+          'children': [
             {'id': 1, 'name': 'Robert'},
             {'id': 2, 'name': 'Mariah'},
-          ]),
-        );
-      },
-    );
-    test(
-      "should use pluck and return the children and the name of the person with the id equal to 1",
-      () async {
-        var parent = await r
-            .table(tableName!)
-            .get(1)
-            .pluck('children', 'name')
-            .run(connection);
-        expect(parent is Map, equals(true));
-
-        expect(
-          parent,
-          equals({
-            'children': [
-              {'id': 1, 'name': 'Robert'},
-              {'id': 2, 'name': 'Mariah'},
-            ],
-            'name': 'Jane Doe',
-          }),
-        );
-      },
-    );
+          ],
+          'name': 'Jane Doe',
+        }),
+      );
+    });
     test("should use pluck and return the children of the people", () async {
       Cursor parents = await r
           .table(tableName!)
@@ -160,102 +154,90 @@ void main() {
       },
     );
     // TODO: add the nested objects test (without the shorthand).
-    test(
-      "should use pluck with the shorthand and return the children of the people who has child/children with id and name",
-      () async {
-        Cursor parents = await r
-            .table(tableName!)
-            .pluck({
-              'children': ['id', 'name'],
-            })
-            .run(connection);
+    test("should use pluck with the shorthand and return the children of the people who has child/children with id and name", () async {
+      Cursor parents = await r
+          .table(tableName!)
+          .pluck({
+            'children': ['id', 'name'],
+          })
+          .run(connection);
 
-        List parentsList = await parents.toList();
+      List parentsList = await parents.toList();
 
-        expect(parentsList.length, equals(3));
+      expect(parentsList.length, equals(3));
 
-        expect(
-          parentsList[2]['children'],
-          equals([
+      expect(
+        parentsList[2]['children'],
+        equals([
+          {'id': 1, 'name': 'Robert'},
+          {'id': 2, 'name': 'Mariah'},
+        ]),
+      );
+      expect(
+        parentsList[1]['children'],
+        equals([
+          {'id': 1, 'name': 'Louis'},
+        ]),
+      );
+      expect(parentsList[0]['children'], equals(null));
+    });
+    test("should use pluck with the shorthand and return the children and the name of the people who has child/children with id and name", () async {
+      Cursor parents = await r
+          .table(tableName!)
+          .pluck({
+            'children': ['id', 'name'],
+          }, 'name')
+          .run(connection);
+
+      List parentsList = await parents.toList();
+
+      expect(parentsList.length, equals(3));
+
+      expect(
+        parentsList[2],
+        equals({
+          'children': [
             {'id': 1, 'name': 'Robert'},
             {'id': 2, 'name': 'Mariah'},
-          ]),
-        );
-        expect(
-          parentsList[1]['children'],
-          equals([
+          ],
+          'name': 'Jane Doe',
+        }),
+      );
+      expect(
+        parentsList[1],
+        equals({
+          'children': [
             {'id': 1, 'name': 'Louis'},
-          ]),
-        );
-        expect(parentsList[0]['children'], equals(null));
-      },
-    );
-    test(
-      "should use pluck with the shorthand and return the children and the name of the people who has child/children with id and name",
-      () async {
-        Cursor parents = await r
-            .table(tableName!)
-            .pluck({
-              'children': ['id', 'name'],
-            }, 'name')
-            .run(connection);
-
-        List parentsList = await parents.toList();
-
-        expect(parentsList.length, equals(3));
-
-        expect(
-          parentsList[2],
-          equals({
-            'children': [
-              {'id': 1, 'name': 'Robert'},
-              {'id': 2, 'name': 'Mariah'},
-            ],
-            'name': 'Jane Doe',
-          }),
-        );
-        expect(
-          parentsList[1],
-          equals({
-            'children': [
-              {'id': 1, 'name': 'Louis'},
-            ],
-            'name': 'Jon Doe',
-          }),
-        );
-        expect(parentsList[0], equals({'name': 'Firstname Last'}));
-      },
-    );
+          ],
+          'name': 'Jon Doe',
+        }),
+      );
+      expect(parentsList[0], equals({'name': 'Firstname Last'}));
+    });
     // TODO: add tests with r.args.
   });
 
   group("without command -> ", () {
-    test(
-      "should use without and return the person with the id equal to 1 without the children data",
-      () async {
-        var parent = await r
-            .table(tableName!)
-            .get(1)
-            .without('children')
-            .run(connection);
-        expect(parent is Map, equals(true));
+    test("should use without and return the person with the id equal to 1 without the children data", () async {
+      var parent = await r
+          .table(tableName!)
+          .get(1)
+          .without('children')
+          .run(connection);
+      expect(parent is Map, equals(true));
 
-        expect(parent, equals({'id': 1, 'name': 'Jane Doe'}));
-      },
-    );
-    test(
-      "should use without and return the person with the id equal to 1 without the children data and the name",
-      () async {
-        var parent = await r
-            .table(tableName!)
-            .get(1)
-            .without('children', 'name')
-            .run(connection);
-        expect(parent is Map, equals(true));
+      expect(parent, equals({'id': 1, 'name': 'Jane Doe'}));
+    });
+    test("should use without and return the person with the id equal to 1 without the children data and the name", () async {
+      var parent = await r
+          .table(tableName!)
+          .get(1)
+          .without('children', 'name')
+          .run(connection);
+      expect(parent is Map, equals(true));
 
-        expect(parent, equals({'id': 1}));
-      },
-    );
+      expect(parent, equals({'id': 1}));
+    });
     test(
       "should use without and return the people without the children data",
       () async {
@@ -276,90 +258,81 @@ void main() {
         expect(parentsList[0], equals({'id': 3, 'name': 'Firstname Last'}));
       },
     );
-    test(
-      "should use without and return the people without the children data and the name",
-      () async {
-        Cursor parents = await r
-            .table(tableName!)
-            .without('children', 'name')
-            .run(connection);
+    test("should use without and return the people without the children data and the name", () async {
+      Cursor parents = await r
+          .table(tableName!)
+          .without('children', 'name')
+          .run(connection);
 
-        List parentsList = await parents.toList();
+      List parentsList = await parents.toList();
 
-        expect(parentsList.length, equals(3));
+      expect(parentsList.length, equals(3));
 
-        expect(parentsList[2], equals({'id': 1}));
-        expect(parentsList[1], equals({'id': 2, 'nickname': 'Jo'}));
-        expect(parentsList[0], equals({'id': 3}));
-      },
-    );
+      expect(parentsList[2], equals({'id': 1}));
+      expect(parentsList[1], equals({'id': 2, 'nickname': 'Jo'}));
+      expect(parentsList[0], equals({'id': 3}));
+    });
     // TODO: add the nested objects test (without the shorthand).
-    test(
-      "should use without with the shorthand and return the people who has child/children with id and name, but without them",
-      () async {
-        Cursor parents = await r
-            .table(tableName!)
-            .without({
-              'children': ['id', 'name'],
-            })
-            .run(connection);
+    test("should use without with the shorthand and return the people who has child/children with id and name, but without them", () async {
+      Cursor parents = await r
+          .table(tableName!)
+          .without({
+            'children': ['id', 'name'],
+          })
+          .run(connection);
 
-        List parentsList = await parents.toList();
+      List parentsList = await parents.toList();
 
-        expect(parentsList.length, equals(3));
+      expect(parentsList.length, equals(3));
 
-        expect(
-          parentsList[2],
-          equals({
-            'children': [{}, {}],
-            'id': 1,
-            'name': 'Jane Doe',
-          }),
-        );
-        expect(
-          parentsList[1],
-          equals({
-            'children': [{}],
-            'id': 2,
-            'name': 'Jon Doe',
-            'nickname': 'Jo',
-          }),
-        );
-        expect(parentsList[0], equals({'id': 3, 'name': 'Firstname Last'}));
-      },
-    );
-    test(
-      "should use without with the shorthand and return the people who has child/children with id and name, but without them and the person name",
-      () async {
-        Cursor parents = await r
-            .table(tableName!)
-            .without({
-              'children': ['id', 'name'],
-            }, 'name')
-            .run(connection);
+      expect(
+        parentsList[2],
+        equals({
+          'children': [{}, {}],
+          'id': 1,
+          'name': 'Jane Doe',
+        }),
+      );
+      expect(
+        parentsList[1],
+        equals({
+          'children': [{}],
+          'id': 2,
+          'name': 'Jon Doe',
+          'nickname': 'Jo',
+        }),
+      );
+      expect(parentsList[0], equals({'id': 3, 'name': 'Firstname Last'}));
+    });
+    test("should use without with the shorthand and return the people who has child/children with id and name, but without them and the person name", () async {
+      Cursor parents = await r
+          .table(tableName!)
+          .without({
+            'children': ['id', 'name'],
+          }, 'name')
+          .run(connection);
 
-        List parentsList = await parents.toList();
+      List parentsList = await parents.toList();
 
-        expect(parentsList.length, equals(3));
+      expect(parentsList.length, equals(3));
 
-        expect(
-          parentsList[2],
-          equals({
-            'children': [{}, {}],
-            'id': 1,
-          }),
-        );
-        expect(
-          parentsList[1],
-          equals({
-            'children': [{}],
-            'id': 2,
-            'nickname': 'Jo',
-          }),
-        );
-        expect(parentsList[0], equals({'id': 3}));
-      },
-    );
+      expect(
+        parentsList[2],
+        equals({
+          'children': [{}, {}],
+          'id': 1,
+        }),
+      );
+      expect(
+        parentsList[1],
+        equals({
+          'children': [{}],
+          'id': 2,
+          'nickname': 'Jo',
+        }),
+      );
+      expect(parentsList[0], equals({'id': 3}));
+    });
     // TODO: add tests with r.args.
   });
 

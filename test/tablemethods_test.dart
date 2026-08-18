@@ -50,16 +50,13 @@ void main() {
       expect(newTable['name'], equals('unitTestTable'));
       expect(createdTable['config_changes'][0]['old_val'], equals(null));
     });
-    test(
-      "should throw an `ReqlOpFailedError` if a table with the same name exists",
-      () async {
-        try {
-          await r.tableCreate('unitTestTable').run(connection);
-        } catch (err) {
-          expect(err.runtimeType, equals(ReqlOpFailedError));
-        }
-      },
-    );
+    test("should throw an `ReqlOpFailedError` if a table with the same name exists", () async {
+      try {
+        await r.tableCreate('unitTestTable').run(connection);
+      } catch (err) {
+        expect(err.runtimeType, equals(ReqlOpFailedError));
+      }
+    });
     test("should allow user to specify primary_key", () async {
       Map createdTable = await r
           .tableCreate('unitTestTable1', {'primary_key': 'userID'})

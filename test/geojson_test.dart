@@ -39,16 +39,13 @@ void main() {
     int long = -90;
     int lat = 0;
     int rad = 5;
-    test(
-      "should create a polygon given an array containing longitude and latitude and also a radius",
-      () async {
-        Map response = await r.circle([long, lat], rad).run(connection);
+    test("should create a polygon given an array containing longitude and latitude and also a radius", () async {
+      Map response = await r.circle([long, lat], rad).run(connection);
 
-        expect(response.containsKey('coordinates'), equals(true));
-        expect(response.containsKey('type'), equals(true));
-        expect(response['type'], equals('Polygon'));
-      },
-    );
+      expect(response.containsKey('coordinates'), equals(true));
+      expect(response.containsKey('type'), equals(true));
+      expect(response['type'], equals('Polygon'));
+    });
 
     test("should create a polygon given a point and also a radius", () async {
       Point p = r.point(long, lat);
@@ -191,27 +188,24 @@ void main() {
       },
     );
 
-    test(
-      "should filter a sequence to only contain items that include some other geometry",
-      () async {
-        Point point1 = r.point(-0, 0);
-        Point point2 = r.point(-1, 1);
-        Point point3 = r.point(-99, 90);
-        Point point4 = r.point(101, 90);
-        Point point5 = r.point(-100, 90);
-        List included = await r
-            .expr([
-              r.circle(point1, 2),
-              r.circle(point2, 2),
-              r.circle(point3, 2),
-              r.circle(point4, 2),
-            ])
-            .includes(point5)
-            .run(connection);
+    test("should filter a sequence to only contain items that include some other geometry", () async {
+      Point point1 = r.point(-0, 0);
+      Point point2 = r.point(-1, 1);
+      Point point3 = r.point(-99, 90);
+      Point point4 = r.point(101, 90);
+      Point point5 = r.point(-100, 90);
+      List included = await r
+          .expr([
+            r.circle(point1, 2),
+            r.circle(point2, 2),
+            r.circle(point3, 2),
+            r.circle(point4, 2),
+          ])
+          .includes(point5)
+          .run(connection);
 
-        expect(included.length == 2, equals(true));
-      },
-    );
+      expect(included.length == 2, equals(true));
+    });
   });
 
   group("intersects command -> ", () {
@@ -229,36 +223,30 @@ void main() {
       },
     );
 
-    test(
-      "should return false if a geometry does not intersect some other geometry",
-      () async {
-        Point point1 = r.point(-117.220406, 32.719464);
-        Line line = r.line(r.point(20, 20), r.point(0, 1));
-        bool doesIntersect = await r
-            .circle(point1, 1)
-            .intersects(line)
-            .run(connection);
+    test("should return false if a geometry does not intersect some other geometry", () async {
+      Point point1 = r.point(-117.220406, 32.719464);
+      Line line = r.line(r.point(20, 20), r.point(0, 1));
+      bool doesIntersect = await r
+          .circle(point1, 1)
+          .intersects(line)
+          .run(connection);
 
-        expect(doesIntersect, equals(false));
-      },
-    );
+      expect(doesIntersect, equals(false));
+    });
 
-    test(
-      "should filter a sequence to only contain items that intersect some other geometry",
-      () async {
-        var point1 = r.point(0, 0);
-        var point2 = r.point(33, 30);
-        var point3 = r.point(-17, 3);
-        var point4 = r.point(20, 20);
-        var point5 = r.point(-100, 90);
-        Line line = r.line(point1, point2);
-        List intersecting = await r
-            .expr([point1, point2, point3, point4, point5])
-            .intersects(line)
-            .run(connection);
-        expect(intersecting.length == 2, equals(true));
-      },
-    );
+    test("should filter a sequence to only contain items that intersect some other geometry", () async {
+      var point1 = r.point(0, 0);
+      var point2 = r.point(33, 30);
+      var point3 = r.point(-17, 3);
+      var point4 = r.point(20, 20);
+      var point5 = r.point(-100, 90);
+      Line line = r.line(point1, point2);
+      List intersecting = await r
+          .expr([point1, point2, point3, point4, point5])
+          .intersects(line)
+          .run(connection);
+      expect(intersecting.length == 2, equals(true));
+    });
   });
 
   group("line command -> ", () {
@@ -434,55 +422,52 @@ void main() {
     });
   });
 
-  test(
-    "getIntersecting command -> should return a cursor containing all intersecting records of a table",
-    () async {
-      List insertedData = [
-        {
-          'location': r.polygon(
-            r.point(0, 0),
-            r.point(40, 0),
-            r.point(40, 40),
-            r.point(0, 40),
-          ),
-          'name': 'a',
-        },
-        {
-          'location': r.polygon(
-            r.point(40, 0),
-            r.point(80, 0),
-            r.point(80, 40),
-            r.point(40, 40),
-          ),
-          'name': 'a',
-        },
-        {
-          'location': r.polygon(
-            r.point(40, 40),
-            r.point(80, 40),
-            r.point(80, 80),
-            r.point(40, 80),
-          ),
-          'name': 'a',
-        },
-      ];
+  test("getIntersecting command -> should return a cursor containing all intersecting records of a table", () async {
+    List insertedData = [
+      {
+        'location': r.polygon(
+          r.point(0, 0),
+          r.point(40, 0),
+          r.point(40, 40),
+          r.point(0, 40),
+        ),
+        'name': 'a',
+      },
+      {
+        'location': r.polygon(
+          r.point(40, 0),
+          r.point(80, 0),
+          r.point(80, 40),
+          r.point(40, 40),
+        ),
+        'name': 'a',
+      },
+      {
+        'location': r.polygon(
+          r.point(40, 40),
+          r.point(80, 40),
+          r.point(80, 80),
+          r.point(40, 80),
+        ),
+        'name': 'a',
+      },
+    ];
 
-      await r.tableCreate(tableName!).run(connection);
-      await r
-          .table(tableName!)
-          .indexCreate('location', {'geo': true})
-          .run(connection);
-      await r.table(tableName!).indexWait('location').run(connection);
-      await r.table(tableName!).insert(insertedData).run(connection);
-      Cursor intersecting = await r
-          .table(tableName!)
-          .getIntersecting(r.circle(r.point(40, 20), 1), {'index': 'location'})
-          .run(connection);
-      List v = await intersecting.toList();
+    await r.tableCreate(tableName!).run(connection);
+    await r
+        .table(tableName!)
+        .indexCreate('location', {'geo': true})
+        .run(connection);
+    await r.table(tableName!).indexWait('location').run(connection);
+    await r.table(tableName!).insert(insertedData).run(connection);
+    Cursor intersecting = await r
+        .table(tableName!)
+        .getIntersecting(r.circle(r.point(40, 20), 1), {'index': 'location'})
+        .run(connection);
+    List v = await intersecting.toList();
 
-      expect(v.length, equals(2));
-    },
-  );
+    expect(v.length, equals(2));
+  });
 
   group("getNearest command -> ", () {
     test("should get a list of documents nearest a point", () async {

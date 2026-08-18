@@ -43,8 +43,7 @@ class VersionDummy extends $pb.GeneratedMessage {
   @$core.pragma('dart2js:noInline')
   static VersionDummy create() => VersionDummy._();
   VersionDummy createEmptyInstance() => create();
-  static $pb.PbList<VersionDummy> createRepeated() =>
-      $pb.PbList<VersionDummy>();
+  static $core.List<VersionDummy> createRepeated() => <VersionDummy>[];
   @$core.pragma('dart2js:noInline')
   static VersionDummy getDefault() => _defaultInstance ??=
       $pb.GeneratedMessage.$_defaultFor<VersionDummy>(create);
@@ -104,8 +103,7 @@ class Query_AssocPair extends $pb.GeneratedMessage {
   @$core.pragma('dart2js:noInline')
   static Query_AssocPair create() => Query_AssocPair._();
   Query_AssocPair createEmptyInstance() => create();
-  static $pb.PbList<Query_AssocPair> createRepeated() =>
-      $pb.PbList<Query_AssocPair>();
+  static $core.List<Query_AssocPair> createRepeated() => <Query_AssocPair>[];
   @$core.pragma('dart2js:noInline')
   static Query_AssocPair getDefault() => _defaultInstance ??=
       $pb.GeneratedMessage.$_defaultFor<Query_AssocPair>(create);
@@ -234,7 +232,7 @@ class Query extends $pb.GeneratedMessage {
   @$core.pragma('dart2js:noInline')
   static Query create() => Query._();
   Query createEmptyInstance() => create();
-  static $pb.PbList<Query> createRepeated() => $pb.PbList<Query>();
+  static $core.List<Query> createRepeated() => <Query>[];
   @$core.pragma('dart2js:noInline')
   static Query getDefault() =>
       _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Query>(create);
@@ -371,7 +369,7 @@ class Frame extends $pb.GeneratedMessage {
   @$core.pragma('dart2js:noInline')
   static Frame create() => Frame._();
   Frame createEmptyInstance() => create();
-  static $pb.PbList<Frame> createRepeated() => $pb.PbList<Frame>();
+  static $core.List<Frame> createRepeated() => <Frame>[];
   @$core.pragma('dart2js:noInline')
   static Frame getDefault() =>
       _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Frame>(create);
@@ -459,7 +457,7 @@ class Backtrace extends $pb.GeneratedMessage {
   @$core.pragma('dart2js:noInline')
   static Backtrace create() => Backtrace._();
   Backtrace createEmptyInstance() => create();
-  static $pb.PbList<Backtrace> createRepeated() => $pb.PbList<Backtrace>();
+  static $core.List<Backtrace> createRepeated() => <Backtrace>[];
   @$core.pragma('dart2js:noInline')
   static Backtrace getDefault() =>
       _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Backtrace>(create);
@@ -581,7 +579,7 @@ class Response extends $pb.GeneratedMessage {
   @$core.pragma('dart2js:noInline')
   static Response create() => Response._();
   Response createEmptyInstance() => create();
-  static $pb.PbList<Response> createRepeated() => $pb.PbList<Response>();
+  static $core.List<Response> createRepeated() => <Response>[];
   @$core.pragma('dart2js:noInline')
   static Response getDefault() =>
       _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Response>(create);
@@ -711,8 +709,7 @@ class Datum_AssocPair extends $pb.GeneratedMessage {
   @$core.pragma('dart2js:noInline')
   static Datum_AssocPair create() => Datum_AssocPair._();
   Datum_AssocPair createEmptyInstance() => create();
-  static $pb.PbList<Datum_AssocPair> createRepeated() =>
-      $pb.PbList<Datum_AssocPair>();
+  static $core.List<Datum_AssocPair> createRepeated() => <Datum_AssocPair>[];
   @$core.pragma('dart2js:noInline')
   static Datum_AssocPair getDefault() => _defaultInstance ??=
       $pb.GeneratedMessage.$_defaultFor<Datum_AssocPair>(create);
@@ -842,7 +839,7 @@ class Datum extends $pb.GeneratedMessage {
   @$core.pragma('dart2js:noInline')
   static Datum create() => Datum._();
   Datum createEmptyInstance() => create();
-  static $pb.PbList<Datum> createRepeated() => $pb.PbList<Datum>();
+  static $core.List<Datum> createRepeated() => <Datum>[];
   @$core.pragma('dart2js:noInline')
   static Datum getDefault() =>
       _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Datum>(create);
@@ -956,8 +953,7 @@ class Term_AssocPair extends $pb.GeneratedMessage {
   @$core.pragma('dart2js:noInline')
   static Term_AssocPair create() => Term_AssocPair._();
   Term_AssocPair createEmptyInstance() => create();
-  static $pb.PbList<Term_AssocPair> createRepeated() =>
-      $pb.PbList<Term_AssocPair>();
+  static $core.List<Term_AssocPair> createRepeated() => <Term_AssocPair>[];
   @$core.pragma('dart2js:noInline')
   static Term_AssocPair getDefault() => _defaultInstance ??=
       $pb.GeneratedMessage.$_defaultFor<Term_AssocPair>(create);
@@ -1069,7 +1065,7 @@ class Term extends $pb.GeneratedMessage {
   @$core.pragma('dart2js:noInline')
   static Term create() => Term._();
   Term createEmptyInstance() => create();
-  static $pb.PbList<Term> createRepeated() => $pb.PbList<Term>();
+  static $core.List<Term> createRepeated() => <Term>[];
   @$core.pragma('dart2js:noInline')
   static Term getDefault() =>
       _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Term>(create);

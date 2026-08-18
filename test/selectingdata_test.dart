@@ -177,9 +177,9 @@ void main() {
       Cursor users = await r
           .table(tableName!)
           .filter((user) {
-            return user(
-              'name',
-            ).eq("Jon Doe").or(user('name').eq("Firstname Last"));
+            return user('name')
+                .eq("Jon Doe")
+                .or(user('name').eq("Firstname Last"));
           })
           .run(connection);
 

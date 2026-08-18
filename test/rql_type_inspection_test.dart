@@ -87,55 +87,49 @@ void main() {
         );
       },
     );
-    test(
-      "should merge person with id equal to 2 and person with id equal to 1 and person with id equal to 3",
-      () async {
-        var result = await r
-            .table(tableName!)
-            .get(2)
-            .merge(r.table(tableName!).get(1))
-            .merge(r.table(tableName!).get(3))
-            .run(connection);
-        expect(result is Map, equals(true));
+    test("should merge person with id equal to 2 and person with id equal to 1 and person with id equal to 3", () async {
+      var result = await r
+          .table(tableName!)
+          .get(2)
+          .merge(r.table(tableName!).get(1))
+          .merge(r.table(tableName!).get(3))
+          .run(connection);
+      expect(result is Map, equals(true));
 
-        expect(
-          result,
-          equals({
-            'children': [
-              {'id': 1, 'name': 'Robert'},
-              {'id': 2, 'name': 'Mariah'},
-            ],
-            'id': 3,
-            'name': 'Firstname Last',
-            'nickname': 'Jo',
-          }),
-        );
-      },
-    );
-    test(
-      "should merge person with id equal to 2 and person with id equal to 1 and person with id equal to 3 together",
-      () async {
-        var result = await r
-            .table(tableName!)
-            .get(2)
-            .merge(r.table(tableName!).get(1), r.table(tableName!).get(3))
-            .run(connection);
-        expect(result is Map, equals(true));
+      expect(
+        result,
+        equals({
+          'children': [
+            {'id': 1, 'name': 'Robert'},
+            {'id': 2, 'name': 'Mariah'},
+          ],
+          'id': 3,
+          'name': 'Firstname Last',
+          'nickname': 'Jo',
+        }),
+      );
+    });
+    test("should merge person with id equal to 2 and person with id equal to 1 and person with id equal to 3 together", () async {
+      var result = await r
+          .table(tableName!)
+          .get(2)
+          .merge(r.table(tableName!).get(1), r.table(tableName!).get(3))
+          .run(connection);
+      expect(result is Map, equals(true));
 
-        expect(
-          result,
-          equals({
-            'children': [
-              {'id': 1, 'name': 'Robert'},
-              {'id': 2, 'name': 'Mariah'},
-            ],
-            'id': 3,
-            'name': 'Firstname Last',
-            'nickname': 'Jo',
-          }),
-        );
-      },
-    );
+      expect(
+        result,
+        equals({
+          'children': [
+            {'id': 1, 'name': 'Robert'},
+            {'id': 2, 'name': 'Mariah'},
+          ],
+          'id': 3,
+          'name': 'Firstname Last',
+          'nickname': 'Jo',
+        }),
+      );
+    });
     // TODO: add tests with r.args.
   });
 
