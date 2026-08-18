@@ -276,19 +276,16 @@ void main() {
       },
     );
 
-    test(
-      "should return a time object if given a year, month, day, hour, minute, second, and timezone",
-      () async {
-        DateTime obj = await r
-            .time(2010, 12, 29, hour: 7, minute: 33, second: 45, timezone: 'Z')
-            .run(connection);
+    test("should return a time object if given a year, month, day, hour, minute, second, and timezone", () async {
+      DateTime obj = await r
+          .time(2010, 12, 29, hour: 7, minute: 33, second: 45, timezone: 'Z')
+          .run(connection);
 
-        expect(obj.runtimeType, equals(DateTime));
-        expect(obj.isBefore(DateTime.now()), equals(true));
-        expect(obj.minute, equals(33));
-        expect(obj.second, equals(45));
-      },
-    );
+      expect(obj.runtimeType, equals(DateTime));
+      expect(obj.isBefore(DateTime.now()), equals(true));
+      expect(obj.minute, equals(33));
+      expect(obj.second, equals(45));
+    });
   });
 
   test(
@@ -539,15 +536,12 @@ void main() {
       },
     );
 
-    test(
-      "should generate a positive random int no greater than the single argument",
-      () async {
-        int number = await r.random(50).run(connection);
+    test("should generate a positive random int no greater than the single argument", () async {
+      int number = await r.random(50).run(connection);
 
-        expect(number, lessThanOrEqualTo(50));
-        expect(number, greaterThanOrEqualTo(0));
-      },
-    );
+      expect(number, lessThanOrEqualTo(50));
+      expect(number, greaterThanOrEqualTo(0));
+    });
 
     test("should generate a random int between the two arguments", () async {
       int number = await r.random(50, 55).run(connection);

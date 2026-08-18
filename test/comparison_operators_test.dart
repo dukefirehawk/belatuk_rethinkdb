@@ -78,14 +78,11 @@ void main() {
       var result = await r.eq(r.args(vals)).run(connection);
       expect(result, equals(true));
     });
-    test(
-      "should use args with eq to compare multiple different values (one different from the others)",
-      () async {
-        var vals = [10, 20, 20];
-        var result = await r.eq(r.args(vals)).run(connection);
-        expect(result, equals(false));
-      },
-    );
+    test("should use args with eq to compare multiple different values (one different from the others)", () async {
+      var vals = [10, 20, 20];
+      var result = await r.eq(r.args(vals)).run(connection);
+      expect(result, equals(false));
+    });
     test(
       "should use args with eq to compare multiple different values",
       () async {
@@ -165,14 +162,11 @@ void main() {
       var result = await r.ne(r.args(vals)).run(connection);
       expect(result, equals(false));
     });
-    test(
-      "should use args with ne to compare multiple different values (one different from the others)",
-      () async {
-        var vals = [10, 20, 20];
-        var result = await r.ne(r.args(vals)).run(connection);
-        expect(result, equals(true));
-      },
-    );
+    test("should use args with ne to compare multiple different values (one different from the others)", () async {
+      var vals = [10, 20, 20];
+      var result = await r.ne(r.args(vals)).run(connection);
+      expect(result, equals(true));
+    });
     test(
       "should use args with ne to compare multiple different values",
       () async {
@@ -277,38 +271,26 @@ void main() {
       var result = await r.lt(r.args(vals)).run(connection);
       expect(result, equals(false));
     });
-    test(
-      "should use args with lt to compare multiple values (one lower and two higher and equal)",
-      () async {
-        var vals = [10, 20, 20];
-        var result = await r.lt(r.args(vals)).run(connection);
-        expect(result, equals(false));
-      },
-    );
-    test(
-      "should use args with lt to compare multiple values (two lower and equal and one higher)",
-      () async {
-        var vals = [10, 10, 20];
-        var result = await r.lt(r.args(vals)).run(connection);
-        expect(result, equals(false));
-      },
-    );
-    test(
-      "should use args with lt to compare multiple values (one higher and two lower and equal)",
-      () async {
-        var vals = [20, 10, 10];
-        var result = await r.lt(r.args(vals)).run(connection);
-        expect(result, equals(false));
-      },
-    );
-    test(
-      "should use args with lt to compare multiple values (two higher and equal and one lower)",
-      () async {
-        var vals = [20, 20, 10];
-        var result = await r.lt(r.args(vals)).run(connection);
-        expect(result, equals(false));
-      },
-    );
+    test("should use args with lt to compare multiple values (one lower and two higher and equal)", () async {
+      var vals = [10, 20, 20];
+      var result = await r.lt(r.args(vals)).run(connection);
+      expect(result, equals(false));
+    });
+    test("should use args with lt to compare multiple values (two lower and equal and one higher)", () async {
+      var vals = [10, 10, 20];
+      var result = await r.lt(r.args(vals)).run(connection);
+      expect(result, equals(false));
+    });
+    test("should use args with lt to compare multiple values (one higher and two lower and equal)", () async {
+      var vals = [20, 10, 10];
+      var result = await r.lt(r.args(vals)).run(connection);
+      expect(result, equals(false));
+    });
+    test("should use args with lt to compare multiple values (two higher and equal and one lower)", () async {
+      var vals = [20, 20, 10];
+      var result = await r.lt(r.args(vals)).run(connection);
+      expect(result, equals(false));
+    });
     test(
       "should use args with lt to compare multiple increasing values",
       () async {
@@ -397,38 +379,26 @@ void main() {
       var result = await r.le(r.args(vals)).run(connection);
       expect(result, equals(true));
     });
-    test(
-      "should use args with le to compare multiple values (one lower and two higher and equal)",
-      () async {
-        var vals = [10, 20, 20];
-        var result = await r.le(r.args(vals)).run(connection);
-        expect(result, equals(true));
-      },
-    );
-    test(
-      "should use args with le to compare multiple values (two lower and equal and one higher)",
-      () async {
-        var vals = [10, 10, 20];
-        var result = await r.le(r.args(vals)).run(connection);
-        expect(result, equals(true));
-      },
-    );
-    test(
-      "should use args with le to compare multiple values (one higher and two lower and equal)",
-      () async {
-        var vals = [20, 10, 10];
-        var result = await r.le(r.args(vals)).run(connection);
-        expect(result, equals(false));
-      },
-    );
-    test(
-      "should use args with le to compare multiple values (two higher and equal and one lower)",
-      () async {
-        var vals = [20, 20, 10];
-        var result = await r.le(r.args(vals)).run(connection);
-        expect(result, equals(false));
-      },
-    );
+    test("should use args with le to compare multiple values (one lower and two higher and equal)", () async {
+      var vals = [10, 20, 20];
+      var result = await r.le(r.args(vals)).run(connection);
+      expect(result, equals(true));
+    });
+    test("should use args with le to compare multiple values (two lower and equal and one higher)", () async {
+      var vals = [10, 10, 20];
+      var result = await r.le(r.args(vals)).run(connection);
+      expect(result, equals(true));
+    });
+    test("should use args with le to compare multiple values (one higher and two lower and equal)", () async {
+      var vals = [20, 10, 10];
+      var result = await r.le(r.args(vals)).run(connection);
+      expect(result, equals(false));
+    });
+    test("should use args with le to compare multiple values (two higher and equal and one lower)", () async {
+      var vals = [20, 20, 10];
+      var result = await r.le(r.args(vals)).run(connection);
+      expect(result, equals(false));
+    });
     test(
       "should use args with le to compare multiple increasing values",
       () async {
@@ -517,38 +487,26 @@ void main() {
       var result = await r.gt(r.args(vals)).run(connection);
       expect(result, equals(false));
     });
-    test(
-      "should use args with gt to compare multiple values (one lower and two higher and equal)",
-      () async {
-        var vals = [10, 20, 20];
-        var result = await r.gt(r.args(vals)).run(connection);
-        expect(result, equals(false));
-      },
-    );
-    test(
-      "should use args with gt to compare multiple values (two lower and equal and one higher)",
-      () async {
-        var vals = [10, 10, 20];
-        var result = await r.gt(r.args(vals)).run(connection);
-        expect(result, equals(false));
-      },
-    );
-    test(
-      "should use args with gt to compare multiple values (one higher and two lower and equal)",
-      () async {
-        var vals = [20, 10, 10];
-        var result = await r.gt(r.args(vals)).run(connection);
-        expect(result, equals(false));
-      },
-    );
-    test(
-      "should use args with gt to compare multiple values (two higher and equal and one lower)",
-      () async {
-        var vals = [20, 20, 10];
-        var result = await r.gt(r.args(vals)).run(connection);
-        expect(result, equals(false));
-      },
-    );
+    test("should use args with gt to compare multiple values (one lower and two higher and equal)", () async {
+      var vals = [10, 20, 20];
+      var result = await r.gt(r.args(vals)).run(connection);
+      expect(result, equals(false));
+    });
+    test("should use args with gt to compare multiple values (two lower and equal and one higher)", () async {
+      var vals = [10, 10, 20];
+      var result = await r.gt(r.args(vals)).run(connection);
+      expect(result, equals(false));
+    });
+    test("should use args with gt to compare multiple values (one higher and two lower and equal)", () async {
+      var vals = [20, 10, 10];
+      var result = await r.gt(r.args(vals)).run(connection);
+      expect(result, equals(false));
+    });
+    test("should use args with gt to compare multiple values (two higher and equal and one lower)", () async {
+      var vals = [20, 20, 10];
+      var result = await r.gt(r.args(vals)).run(connection);
+      expect(result, equals(false));
+    });
     test(
       "should use args with gt to compare multiple increasing values",
       () async {
@@ -637,38 +595,26 @@ void main() {
       var result = await r.ge(r.args(vals)).run(connection);
       expect(result, equals(true));
     });
-    test(
-      "should use args with ge to compare multiple values (one lower and two higher and equal)",
-      () async {
-        var vals = [10, 20, 20];
-        var result = await r.ge(r.args(vals)).run(connection);
-        expect(result, equals(false));
-      },
-    );
-    test(
-      "should use args with ge to compare multiple values (two lower and equal and one higher)",
-      () async {
-        var vals = [10, 10, 20];
-        var result = await r.ge(r.args(vals)).run(connection);
-        expect(result, equals(false));
-      },
-    );
-    test(
-      "should use args with ge to compare multiple values (one higher and two lower and equal)",
-      () async {
-        var vals = [20, 10, 10];
-        var result = await r.ge(r.args(vals)).run(connection);
-        expect(result, equals(true));
-      },
-    );
-    test(
-      "should use args with ge to compare multiple values (two higher and equal and one lower)",
-      () async {
-        var vals = [20, 20, 10];
-        var result = await r.ge(r.args(vals)).run(connection);
-        expect(result, equals(true));
-      },
-    );
+    test("should use args with ge to compare multiple values (one lower and two higher and equal)", () async {
+      var vals = [10, 20, 20];
+      var result = await r.ge(r.args(vals)).run(connection);
+      expect(result, equals(false));
+    });
+    test("should use args with ge to compare multiple values (two lower and equal and one higher)", () async {
+      var vals = [10, 10, 20];
+      var result = await r.ge(r.args(vals)).run(connection);
+      expect(result, equals(false));
+    });
+    test("should use args with ge to compare multiple values (one higher and two lower and equal)", () async {
+      var vals = [20, 10, 10];
+      var result = await r.ge(r.args(vals)).run(connection);
+      expect(result, equals(true));
+    });
+    test("should use args with ge to compare multiple values (two higher and equal and one lower)", () async {
+      var vals = [20, 20, 10];
+      var result = await r.ge(r.args(vals)).run(connection);
+      expect(result, equals(true));
+    });
     test(
       "should use args with ge to compare multiple increasing values",
       () async {

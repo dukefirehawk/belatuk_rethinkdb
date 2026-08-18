@@ -1,5 +1,10 @@
 # Change Log
 
+## 1.4.0
+
+* Require dart >= 3.13.0
+* Upgraded `protobuf` to 6.0.0
+
 ## 1.3.0
 
 * Require dart >= 3.9.0
